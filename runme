@@ -1,0 +1,11 @@
+[ ! -d ./mongodb ] && mkdir mongodb
+mongod --dbpath=`pwd`/mongodb &
+
+[ ! -d ./node_modules ] && npm install
+APP="app.js"
+
+ [ -f ./"server.js" ] && APP="server.js" ||
+ [ -f ./"index.js" ] && APP="index.js"
+
+$(which nodemon) "$APP" || $(which node) "$APP"
+
